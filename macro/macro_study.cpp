@@ -36,7 +36,7 @@ void test1();
 // 9.可变宏(...) 和 __VA_ARGS__
 #define LOG(format, ...) printf(format"\n", __VA_ARGS__)
 
-int main() {
+int main11() {
     int max = MAX(6, 7);
     cout << max << endl;
 

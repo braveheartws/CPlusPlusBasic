@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.17)
 project(CPlusPlusBasic)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(CPlusPlusBasic main.cpp macro/macro_study.cpp)
+add_executable(CPlusPlusBasic main.cpp macro/macro_study.cpp demo/chapter2/demo.cpp)
