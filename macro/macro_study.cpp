@@ -50,7 +50,7 @@ int main11() {
     return 0;
 }
 
-void test1() {
+void test0() {
     // 有参数宏
     int x = 6;
     // 输出结果： COUNT = 13    替换后相当于 6 + 1 * 6 + 1 = 13
