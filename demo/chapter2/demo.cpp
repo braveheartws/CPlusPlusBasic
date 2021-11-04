@@ -13,10 +13,23 @@ void cplusstring();
 int *returnpointer();
 void teststruct();
 void testunion();
+void testpointer();
 
 int main() {
-    testunion();
+    testpointer();
     return 0;
+}
+
+void testpointer() {
+    int* arr = new int[10];
+    arr[0] = 1;
+    arr[1] = 2;
+    cout  << arr[0] << endl;
+    arr+=1;
+    cout  << arr[0] << endl;
+    arr-=1;
+    delete [] arr;
+
 }
 
 
@@ -46,11 +59,11 @@ union size{
 void testunion() {
     union size s;
     s.i = 8;
-    cout << sizeof(union size);
+    cout << sizeof(union size) << endl;
     s.d = 8055.8;
-    cout << sizeof(union size);
+    cout << sizeof(union size) << endl;
     s.f = 8.0;
-    cout << sizeof(union size);
+    cout << sizeof(union size) << endl;
 }
 
 void teststruct() {
@@ -80,7 +93,8 @@ void teststruct() {
 }
 
 int *returnpointer() {
-    int a = 555; //不允许返回, 除非+static
+    static int a = 555; //不允许返回, 除非+static
+    //int a = 555; //不允许返回, 除非+static
     cout << "returnpointer:" << &a << endl;
     return &a;
 }
