@@ -14,10 +14,22 @@ int *returnpointer();
 void teststruct();
 void testunion();
 void testpointer();
+void testarray();
 
 int main() {
-    testpointer();
+    testarray();
     return 0;
+}
+
+void testarray(){
+    int array[5];
+    cout << array << endl;
+    cout << &array << endl;
+    cout << array + 1 << endl;
+    cout << &array  + 1<< endl;
+
+    char flower[10] = "winter";
+    cout << flower << endl;
 }
 
 void testpointer() {
