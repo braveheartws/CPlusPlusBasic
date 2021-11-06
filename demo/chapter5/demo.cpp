@@ -2,14 +2,32 @@
 #include <sstream>
 #include <cstdio>
 #include <cstring>
+#include <fstream>
 
 using namespace std;
 
 void test51();
+void testcin();
+void testio();
 
 int main() {
-    test51();
+    testio();
     return 0;
+}
+
+void testio() {
+    ofstream  outFile;
+    ofstream  fout;
+    outFile.open("bbb.txt");
+    outFile<<"sdfffffds";
+    outFile.close();
+}
+
+void testcin() {
+    char ch[50];
+    cin.getline(ch,49);
+
+    cout << ch << endl;
 }
 
 void test51() {

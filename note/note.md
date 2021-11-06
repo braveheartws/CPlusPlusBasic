@@ -97,3 +97,11 @@ arr += 1;
 delete[] arr;	//需要将arr-=1,才能释放
 ```
 
+## 第六章 分支语句
+
+```c
+#include <ctype.h>
+#include <cctype>
+```
+
+![](./4.png)
