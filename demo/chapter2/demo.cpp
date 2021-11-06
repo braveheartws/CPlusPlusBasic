@@ -16,7 +16,7 @@ void testunion();
 void testpointer();
 void testarray();
 
-int main() {
+int main02() {
     testarray();
     return 0;
 }
