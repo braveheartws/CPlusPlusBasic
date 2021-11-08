@@ -18,10 +18,10 @@ double cube(double x);
 
 int sum_arr(const int *arr, int size);
 
-typedef struct Human{
+typedef struct Human {
     char name[50];
     int age;
-}Human;
+} Human;
 
 Human createHuman() {
     Human human{"braveheart", 55};
@@ -29,24 +29,51 @@ Human createHuman() {
     return human;
 }
 
-int (*sum)(int,int);
-int test88(int,int,int (*func)(int,int));
+int (*sum)(int, int);
 
-int sumimpl(int,int);
+int test88(int, int, int (*func)(int, int));
+
+int sumimpl(int, int);
+
+int swap(int *a, int *b) {
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b =temp;
+}
+
+int swapv(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+
+    cout <<a <<"ss" << b << endl;
+}
 
 int main() {
     sum = &sumimpl;
-    int ret  = test88(8,9, sum);
+    int ret = test88(8, 9, sum);
     cout << ret << endl;
+    int a = 15;
+    int &b = a;
+    cout << &a << endl;
+    cout << &b << endl;
+
+    int src = 5;
+    int dest = 8;
+    //swap(&src, &dest);
+    swapv(src,dest);
+    cout <<src << endl;
+    cout <<dest << endl;
     return 0;
 }
 
-int test88(int a,int b,int (*func)(int,int)) {
-    return (*func)(a,b);
+int test88(int a, int b, int (*func)(int, int)) {
+    return (*func)(a, b);
 }
 
-int sumimpl(int a,int b) {
-    return a +b;
+int sumimpl(int a, int b) {
+    return a + b;
 }
 
 int sum_arr(const int *arr, int size) {
