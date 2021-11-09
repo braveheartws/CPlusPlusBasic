@@ -21,6 +21,11 @@ int main02() {
     return 0;
 }
 
+template<typename AnyType>
+AnyType Sum(AnyType& a,AnyType& b) {
+    return a * b;
+}
+
 void testarray(){
     int array[5];
     cout << array << endl;

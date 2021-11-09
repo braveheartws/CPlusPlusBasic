@@ -50,6 +50,13 @@ int swapv(int a, int b) {
     cout <<a <<"ss" << b << endl;
 }
 
+template<class T>
+T calc(T& t, T& t1) {
+    return t * t1;
+}
+
+//template <> int calc<int>(int&,int&);
+template int calc<>(int&,int&);
 int main() {
     sum = &sumimpl;
     int ret = test88(8, 9, sum);
@@ -64,7 +71,9 @@ int main() {
     //swap(&src, &dest);
     swapv(src,dest);
     cout <<src << endl;
-    cout <<dest << endl;
+    int bb = 5;
+    int cc = 6;
+    cout <<calc<int>(bb,cc) << endl;
     return 0;
 }
 

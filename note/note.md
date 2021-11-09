@@ -257,5 +257,105 @@ int rate = 101;
 int& alias = rate;
 ```
 
-263
+### 8.3 默认参数
+
+```c
+int harpo(int n, int m = 4, int j = 5);	//valid
+int chico(int n, int m = 6, int j);	//invalid
+```
+
+*对于带参数列表的函数, 必须从右向左添加默认值, 如果要为某个参数添加默认值,则必须为它右边的所有参数提供默认值
+
+### 8.5 函数模板
+
+```c
+template<typename T>
+T sum(T& t, T& t2) {
+    return t * t2;
+}
+```
+
+#### 8.5.2 模板的局限性
+
+```c
+template <class T>
+void f(T a, T b)
+{...}
+```
+
+* 如果T为数组,	则 a = b 不成立(=)
+* 如果T为结构,    则 if (a > b) 不成立(>)
+* 如果T为数组,    则 T c = a * b 不成立(*)
+
+#### 8.5.2 实例化和具体化
+
+````c
+template<class T>
+T calc(T& t, T& t1) {
+    return t * t1;
+}
+
+template <> int calc<int>(int&,int&);
+
+template <> int calc(int&,int&);	//显式实例化
+
+````
+
+**模板参数类型匹配**
+
+![](./6.png)
+
+---
+
+## 第九章 内存模型和名称空间
+
+程序组成:
+
+* 头文件: 包含结构声明和使用这些结构的函数原型.
+* 源代码文件: 包含于结构相关的函数的代码
+* 源代码文件: 包含调用与结构相关的函数的代码
+
+![](./7.png)
+
+![](./8.png)
+
+![](./9.png)
+
+**头文件定义**
+
+```1
+#ifndef COORDIN_H_
+#define COORDIN_H_
+...
+#endif //COORDIN_H_
+```
+
+#### 9.2.3 静态持续变量
+
+c++为静态存储持续性变量提供了3种链接性:
+
+1. 外部链接性(可在其他文件中访问)
+2. 内部链接性(只能在当前文件中访问)
+3. 无链接性(只能在当前函数访问)
+
+```c
+int global = 1000; //外部
+static int code = 50;	//文件内部
+
+void func() {
+    static int count = 3;	//局部链接性
+    ..
+}
+```
+
+![](./10.png)
+
+#### 9.2.4 静态持续性,外部链接性
+
+**单定义规则**
+
+"单定义规则(One Definition Rule, ODR)" 两种变量声明:
+
+* 定义声明(definine declaration), 简称定义,直接给变量分配存储空间
+* 引用声明(reference declaration), 简称声明, 它不给变量分配存储空,因为它引用已有变量,引用声明使用关键字extern,且不进行初始化, 否则声明为定义
 
