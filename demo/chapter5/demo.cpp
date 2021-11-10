@@ -57,7 +57,7 @@ T calc(T& t, T& t1) {
 
 //template <> int calc<int>(int&,int&);
 template int calc<>(int&,int&);
-int main() {
+int mainc5() {
     sum = &sumimpl;
     int ret = test88(8, 9, sum);
     cout << ret << endl;

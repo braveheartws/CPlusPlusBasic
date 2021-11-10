@@ -3,4 +3,4 @@ project(CPlusPlusBasic)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(CPlusPlusBasic main.cpp macro/macro_study.cpp demo/chapter2/demo.cpp demo/chapter5/demo.cpp)
+add_executable(CPlusPlusBasic demo/chapter9/main.cpp main.cpp macro/macro_study.cpp demo/chapter2/demo.cpp demo/chapter5/demo.cpp)
