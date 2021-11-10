@@ -359,3 +359,22 @@ void func() {
 * 定义声明(definine declaration), 简称定义,直接给变量分配存储空间
 * 引用声明(reference declaration), 简称声明, 它不给变量分配存储空,因为它引用已有变量,引用声明使用关键字extern,且不进行初始化, 否则声明为定义
 
+![](./11.png)
+
+```c
+extern "C" void spiff(int);	//C语言链接性
+extern void spoff(int);	//C++语言链接性
+extern "C++" void spiff(int); //C++语言链接性
+```
+
+#### 9.2.10 存储方案和动态分配方案
+
+new 初始化
+
+```c
+int *pi = new int(6);
+where *one = new where{2.5,5.3,7.2};
+```
+
+### 9.3 名称空间
+
