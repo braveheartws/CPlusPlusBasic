@@ -1,0 +1,106 @@
+1. 导入C++库头文件应在xxx.cpp,不应该在xxx.h
+例如:#include <iostream>
+因为其他文件引用这些类只会引用.h头文件,不会引入cpp,不会造成重复引用
+
+2.增加代码块可解决窗口测试环境下析构函数正常执行
+int main() {
+    {
+        Student stu;
+        Student stu(18,20);
+        Student stu = Student(188,50);
+    }
+    return 0;
+}
+
+3.设置cout输出位数
+std::cout.precision(3);
+std::cout<<5.516168<< std::endl;
+
+4.stock1对象已经存在,这里的＝不是进行初始化,而是将新值附给stock1; 通过让构造函数创建一个新的,临时的对象,将内容复制给stock1来实现
+Stock stock1 = Stock(c,d);
+stock1 = Stock();
+ps: 优先通过初始化,而不是通过赋值的方式
+
+5.C++11支持列表初始化.
+只需要括号里面的的参数与构造函数参数一致
+Stock stock = {5,6};
+Stock stock {5,6};
+Stock stock{};
+
+6.const 成员函数
+const Stock stock {5,6};
+stock.show();   //编译器将无法编译,因为它无法确定show的代码会不会修改对象
+解决方式:
+void show() const;
+void Stock::show() const
+
+7.比较两个对象返回其中一个
+const Stock& topval(const Stock& s) const;
+
+8.运算符
+(.) :直接成员运算符
+(->):间接成员运算符
+(::):作用域解析运算符
+
+9.作用域为类的常量
+1): 枚举
+class Brave {
+private:
+    enum {Months = 12};
+    double costs[Months];
+}
+2):static
+class Brave {
+private:
+    static const int Months = 12;
+    double costs[Months];
+}
+
+10.枚举
+enum class Color{
+    WHITE,COLOR,YELLOW,BLACK
+};
+
+enum Color2{
+    WHITE,COLOR,YELLOW,BLACK
+};
+Color color = COLOR;//错误 存在二义性 Color color = Color::COLOR;
+
+11.运算符重载局限性
+Time operator*(const double &other) const;
+如上写法只支持:
+Time time = time0 * 1523;   //ok
+Time time = 1535 * time0;   //编译不过
+
+
+12.友元函数
+step1: 将原型放在类声明中, 在原型上加上关键字friend;
+friend Time operator*(double m, const Time &time);
+* operaotr*()是在类中声明的,但不是成员函数不能通过成员运算符访问
+* operaotr*()函数不是成员函数, 但是它与成员函数访问权限相同
+//这种方式可替代上面的友元函数
+Time operator*(double m, const Time &time) {
+    return time * m;
+}
+只有在类声明的原型中才能使用friend关键字
+
+**重点**
+13.重载<<运算符
+version1:
+friend void operator<<(std::ostream &os, const Time &time);
+void operator<<(ostream& os, const Time &time) {
+    os << time.hours <<" : " << time.minutes << endl;
+}
+version2:
+friend ostream& operator<<(std::ostream &os, const Time &time);
+ostream& operator<<(ostream& os, const Time &time) {
+    os << time.hours <<" : " << time.minutes << endl;
+    return os;
+}
+
+14.重载运算符作为成员函数还是非成员函数
+T1 = T2 + T3;
+等同于:
+T1 = T2.operator+(T3);
+T1 = operator+(T2,T3);
+
