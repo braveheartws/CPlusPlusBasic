@@ -11,7 +11,7 @@ namespace ZhangJunPu{
 
 void fetch() {
 }
-int main() {
+int mainc99() {
     using namespace ZhangJunPu::WinterSweett;
     cout << ZhangJunPu::WinterSweett::age << endl;
     cout << ZhangJunPu::age << endl;
