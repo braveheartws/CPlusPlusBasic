@@ -378,3 +378,39 @@ where *one = new where{2.5,5.3,7.2};
 
 ### 9.3 名称空间
 
+```c
+namespace ZhangJunPu{
+    int age = 28;
+    namespace WinterSweett {
+        int age = 18;
+    }
+    void fetch(){
+    }
+}
+
+void fetch() {
+}
+```
+
+using声明和using指令
+
+```c
+//using指令: 表示会导入所有名称空间为ZhangJunPu下面的所有内容
+using namespace ZhangJunPu;
+
+//using声明	相当于只导入了age,其它并未导入
+using ZhangJunPu::age;
+```
+
+![](./12.png)
+
+---
+
+## 第十章 类和对象
+
+**什么是接口?**
+
+> 接口是一个共享框架, 供两个系统交互时使用.
+
+![](./13.png)
+
