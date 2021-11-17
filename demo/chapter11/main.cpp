@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-int main() {
+int mainc11() {
     Time time1{5, 30};
     Time time(5, 5);
     Time time2 = Time(5,60);
