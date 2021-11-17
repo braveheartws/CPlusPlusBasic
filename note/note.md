@@ -481,3 +481,61 @@ StringBad::~StringBad() {
 1.obj_count计数器会变成负数,因为默认的复制构造函数没有对obj_count操作
 
 2.默认的复制构造函数不经过任何处理,在临时的对象析构函数会提前释放新对象指向的内存(默认复制构造函数是浅拷贝)
+
+### 12.3 在构造函数中使用new的注意事项
+
+- 如果构造函数中使用new,则应在析构函数中使用delete
+- new和delete必须互相兼容, new对应delete, new[]对应delete[]
+- 如果多个构造函数,必须以相同的方式使用new,要么都不带,要么都带
+
+**NULL,0,nullptr**
+
+![](./20.png)
+
+* 定义一个复制构造函数,通过深度复制将一个对象初始化为另一个对象.
+
+  ```c
+  String::String(const String & st) {
+  	len = st.len;
+      str = new char[len + 1];
+      strcpy(str, st.str);
+  }
+  ```
+
+* 应当定义一个赋值运算符,通过深度复制将一个对象复制给另一个对象
+
+  ```c
+  String & operator=(const String & st) {
+      if (this == &st)
+          return *this;
+      delete [] str;
+      len = st.len;
+      str = new char[len + 1];
+      strcpy(str, st.str);
+  }
+  ```
+
+  ### 12.6 重点
+
+  **重载<<运算符**
+
+  ```c
+  ostream & operator<<(ostream & os, const c_name &obj)
+  {
+  	return os;
+  }
+  ```
+
+  **转换函数**
+
+  将单个值转换为类类型,需要创建原型如下的类构造函数
+
+  c_name(type_name value);
+
+  c_name:类名  type_name:转换类型的名称.
+
+  ---
+
+  ## 第十三章 类继承
+
+  

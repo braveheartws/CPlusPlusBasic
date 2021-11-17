@@ -4,11 +4,12 @@
 
 #include <iostream>
 #include "Time.h"
+#include "Student.h"
+#include "../chapter12/String.h"
 
 using namespace std;
 
-
-
+using namespace ZHANG;
 
 int mainc11() {
     Time time1{5, 30};
@@ -21,6 +22,17 @@ int mainc11() {
     Time time4 = time3 * 305.1;
     Time time5 = 35035.15 * time3;
     cout << time4 <<"sss" << endl;
+    Student student = Student(15);
+    student.show();
+    hello(student);
     cout << time5;
+
+    Student st1;
+    st1 = 15;
+    st1.show();
+
+
+
+
     return 0;
 }
