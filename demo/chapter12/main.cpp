@@ -41,7 +41,6 @@ int mainc12() {
     char *bbuf = new char[50];
     String *s1, *s2;
 
-    s1 = new (buf) String;
 
     return 0;
 }

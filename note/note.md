@@ -515,32 +515,163 @@ StringBad::~StringBad() {
   }
   ```
 
-  ### 12.6 重点
+### 2.6 重点
 
-  **重载<<运算符**
+**重载<<运算符**
 
-  ```c
-  ostream & operator<<(ostream & os, const c_name &obj)
-  {
-  	return os;
-  }
-  ```
+```c
+ostream & operator<<(ostream & os, const c_name &obj)
+{
+	return os;
+}
+```
 
-  **转换函数**
+**转换函数**
 
-  将单个值转换为类类型,需要创建原型如下的类构造函数
+将单个值转换为类类型,需要创建原型如下的类构造函数
 
-  c_name(type_name value);
+c_name(type_name value);
 
-  c_name:类名  type_name:转换类型的名称.
+c_name:类名  type_name:转换类型的名称.
 
-  ---
+---
 
-  ## 第十三章 类继承
+## 第十三章 类继承
 
-  #### 13.1.4 派生类与基类之间的特殊关系
+**派生类必须使用基类构造函数**
 
-  * 基类指针可以在不进行显示类型转换的情况下指向派生类对象
-  * 基类引用可以在不进行显示类型转换的情况下引用派生类对象
-  * 基类指针或者引用只能用于调用基类的方法
+#### 13.1.4 派生类与基类之间的特殊关系
+
+* 基类指针可以在不进行显示类型转换的情况下指向派生类对象
+* 基类引用可以在不进行显示类型转换的情况下引用派生类对象
+* 基类指针或者引用只能用于调用基类的方法
+
+**为何需要虚析构函数?**
+
+```c
+Brass* brss[2];
+brss[0] = new Brass("father", 5,5);
+brss[1] = new BrassPlus("father", 5,5,500,0.5321);
+```
+
+如果析构函数不是虚的,则将值调用对应于指针类型的析构函数, 如上只会调用Brass的析构函数,即使指针指向的是一个BrassPlus对象, 如果析构函数式虚的,将调用相应对象类型的析构函数, 指针指向的是BrassPlus则会调用对应的析构函数,然后自动调用基类的析构函数.**因此, 使用虚析构函数可以确保正确的析构函数序列被调用**
+
+![](./21.png)
+
+![](./22.png)
+
+#### 13.4.3 虚函数注意事项
+
+* 在基类方法的声明中使用virtual可使该方法在基类以及所有的派生类中是虚的
+* 如果指向对象的引用或指针来调用虚方法, 程序将使用为对象类型定义的方法, 而不使用为引用或指针类型定义的方法, 这称为**动态联编或晚期联编**
+* 如果定义的类将被用作基类, 应将哪些要在派生类中重新定义的类方法声明为虚的
+
+![](./23.png)
+
+5. 重新定义会隐藏基类版本
+
+![](./24.png)
+
+#### 13.5 访问控制: protected
+
+```c
+void BrassPlus::ViewAcct() const {
+    cout << "brass plus" << __func__ << endl;
+    Brass::ViewAcct();
+}
+```
+
+### 13.6 抽象基类
+
+纯虚函数:	当类中声明包含纯虚函数,则不能创建该类的对象.
+
+```c
+virtual void show() = 0;
+```
+
+重写基类operator函数
+
+```c
+baseDMA & baseDMA::operator=(const baseDMA&rs) {
+    if (this == &rs)
+        return *this;
+    delete [] lable;
+    lable = new char[std::strlen(rs.lable) + 1];
+    strcpy(lable, rs.lable);
+    rating = rs.rating;
+    return *this;
+}
+
+hasDMA & hasDMA::operator=(const hasDMA &hs){
+    if (this == &hs)
+        return *this;
+    baseDMA::operaotr=(hs);	//调用父类赋值运算符
+    delete [] lable;
+    strcpy(lable, hs.lable);
+    rating = hs.rating;
+    return *this;
+    
+}
+```
+
+重写基类友元函数
+
+```c
+//父类
+
+friend ostream& operator<< (ostream &os, const baseDMA &rs);
+
+std::ostream & operator<<(ostream&os, const baseDMA& rs) {
+    os << "Lable" << rs.lable << std::endl;
+    os << "Rating" << rs.rating << std::endl;
+    return os;
+}
+//--------------------------------cut--------------
+//子类
+friend ostream& operator<< (ostream &os, const hasDMA &rs);
+
+std::ostream & operator<<(ostream&os, const hasDMA& hs) {
+    os << (const baseDMA&)hs;	//调用父类
+    os << "Style: " << rs.style << std::endl;
+    return os;
+}
+```
+
+### 13.8 类设计回顾
+
+**1.默认构造函数**
+
+**2.复制构造函数**
+
+* 将新对象初始化为同一个对象
+* 按值将对象传递给函数
+* 函数按值返回对象
+* 编译器生成临时对象
+
+**3.赋值运算符**
+
+```c
+Star & Star::operator=(const char *) {...}
+```
+
+#### 13.8.2 其它的类方法
+
+1.构造函数
+
+2.析构函数
+
+3.转换
+
+```c
+Star(const char*);
+Star(const Spectral&,int members = 1);
+```
+
+![](./25.png)
+
+![](./26.png)
+
+6. 使用const 确保方法不修改参数
+
+![](./27.png)
 

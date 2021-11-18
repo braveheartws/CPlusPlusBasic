@@ -16,7 +16,7 @@ public:
     std::string name;
     Animal(int _meta,int _age, int _type, const std::string& name);
 
-    void show();
+    virtual void show();
 };
 
 
