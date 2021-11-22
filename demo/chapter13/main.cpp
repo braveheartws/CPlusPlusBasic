@@ -6,6 +6,9 @@
 #include "BrassPlus.h"
 #include "Father.h"
 #include "Child.h"
+#include "Star.h"
+#include <cstring>
+
 
 int main() {
     using namespace std;
@@ -20,14 +23,20 @@ int main() {
     delete brss[0];
     delete brss[1];
 
-    Child child;
-    Father *father = &child;
-    father->show();
+    Child child(0);
+
     int a = 3;
     int b = a;
     b = 5;
     cout << a << endl;
     cout << b << endl;
+
+    char ch[] = "123456";
+    Star star;
+    star = "abcdef";
+
+    cout << strlen(ch) << endl;
+    cout << sizeof(ch) << endl;
     return 0;
 }
 

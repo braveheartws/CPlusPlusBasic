@@ -5,8 +5,6 @@
 #include "Child.h"
 #include <iostream>
 #include <string>
-void Child::show() {
-    using namespace std;
-    string string1 = "ssss";
-    cout << string1 << endl;
+Child::Child(int age) : Father(age),color(5) {
+
 }

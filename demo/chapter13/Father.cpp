@@ -3,3 +3,9 @@
 //
 
 #include "Father.h"
+#include <iostream>
+
+Father::Father(int age) {
+    using namespace std;
+    cout << " father constructor" << endl;
+}

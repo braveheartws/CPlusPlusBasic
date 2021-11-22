@@ -17,7 +17,7 @@ void BrassPlus::ViewAcct() const {
     Brass::ViewAcct();
 }
 
-BrassPlus::BrassPlus(const std::string &s, long an, double bal, double m1, double r) {
+BrassPlus::BrassPlus() {
     cout << __func__ << endl;
     show = true;
 }

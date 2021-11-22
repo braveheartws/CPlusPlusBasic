@@ -9,8 +9,10 @@
 #include "Father.h"
 
 class Child : public Father{
-
-    void show() override;
+private:
+    int color;
+public:
+    Child(int age);
 };
 
 

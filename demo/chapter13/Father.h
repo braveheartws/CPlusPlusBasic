@@ -7,8 +7,11 @@
 
 
 class Father {
+private:
+
 public:
-    virtual void show() = 0;
+    int num;
+    Father(int age);
 };
 
 
