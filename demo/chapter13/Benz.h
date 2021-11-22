@@ -11,6 +11,7 @@ private:
     int size;
 public:
     Benz(int );
+    void show();
 };
 
 

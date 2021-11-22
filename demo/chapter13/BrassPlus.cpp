@@ -22,6 +22,14 @@ BrassPlus::BrassPlus() {
     show = true;
 }
 
+BrassPlus::BrassPlus(const Brass &ba, double ml, double r) {
+
+}
+
+BrassPlus::BrassPlus(const std::string &s, long an, double bal, double m1, double r) {
+
+}
+
 BrassPlus::~BrassPlus() {
 
 }

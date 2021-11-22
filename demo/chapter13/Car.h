@@ -11,7 +11,7 @@ private:
     int price;
 public:
     Car(int price);
-
+    virtual void show() = 0;
 };
 
 

@@ -7,6 +7,8 @@
 #include "Father.h"
 #include "Child.h"
 #include "Star.h"
+#include "Car.h"
+#include "Benz.h"
 #include <cstring>
 
 
@@ -37,6 +39,10 @@ int main() {
 
     cout << strlen(ch) << endl;
     cout << sizeof(ch) << endl;
+
+    Car* car = new Benz(50);
+    car->show();
+
     return 0;
 }
 
