@@ -12,7 +12,7 @@
 #include <cstring>
 
 
-int main() {
+int mainc13() {
     using namespace std;
 
     BrassPlus brassPlus("zhang",550,5.5,5.5,153.515);
