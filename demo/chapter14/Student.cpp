@@ -5,7 +5,10 @@
 #include "Student.h"
 
 double Student::Average() const {
-
+    if (scores.size() > 0) {
+        return scores.sum() / scores.size();
+    } else
+        return 0;
 }
 
 const std::string &Student::GetName() const {
