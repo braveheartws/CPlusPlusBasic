@@ -58,4 +58,8 @@ public:
 };
 
 
+class SingerWaiter:virtual public Singer, virtual public Waiter{
+
+};
+
 #endif //CPLUSPLUSBASIC_WORKER_H

@@ -8,6 +8,7 @@
 #include "PublicHuman.h"
 #include "ProtectedHuman.h"
 #include "PrivateHuman.h"
+#include "Worker.h"
 
 using namespace std;
 
@@ -26,14 +27,8 @@ int main() {
     cout << valarr.max() << endl;
     PublicHuman publicHuman(18);
     publicHuman.PublicShow();
-
-
     ProtectedHuman protectedHuman;
-
     PrivateHuman privateHuman;
-
-
-
     valarray<int> va(8, 40);
     va[0] = 5;
     va[1] = 8;
@@ -42,8 +37,16 @@ int main() {
     double d = 55;
     StudentNew studentNew("zhangjunpu",&d,5);
     studentNew.max();
-
     ArrayDb ss;
     cout << studentNew <<endl;
+
+    Waiter bob("Bob Apple", 1324L, 5);
+
+    Singer bev("Beverly Hills",522L,3);
+
+    SingerWaiter singerWaiter;
+
+    Worker* waiter = (Singer*)&singerWaiter;
+
     return 0;
 }
