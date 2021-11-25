@@ -4,6 +4,10 @@
 
 #include <iostream>
 #include <valarray>
+#include "StudentNew.h"
+#include "PublicHuman.h"
+#include "ProtectedHuman.h"
+#include "PrivateHuman.h"
 
 using namespace std;
 
@@ -20,11 +24,26 @@ public:
 int main() {
     valarray<int> valarr = {1, 23, 4, 5, 6};
     cout << valarr.max() << endl;
+    PublicHuman publicHuman(18);
+    publicHuman.PublicShow();
+
+
+    ProtectedHuman protectedHuman;
+
+    PrivateHuman privateHuman;
+
+
 
     valarray<int> va(8, 40);
     va[0] = 5;
     va[1] = 8;
     cout << va.max() << endl;
     TestExplicit te = "xxxx";
+    double d = 55;
+    StudentNew studentNew("zhangjunpu",&d,5);
+    studentNew.max();
+
+    ArrayDb ss;
+    cout << studentNew <<endl;
     return 0;
 }
