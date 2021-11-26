@@ -23,7 +23,7 @@ public:
     virtual void Show() const;
 };
 
-class Waiter : public Worker {
+class Waiter : virtual public Worker {
 private:
     int panache;
 public:
@@ -36,9 +36,10 @@ public:
     void Set();
 
     void Show() const;
+
 };
 
-class Singer : public Worker {
+class Singer : virtual public Worker {
 protected:
     enum {
         other, alto, contralto, soprano, bass, baritone, tenor
@@ -55,11 +56,13 @@ public:
     Singer(const Worker&wk,int v = other):Worker(wk),voice(v){}
     void Set();
     void Show() const;
-};
-
-
-class SingerWaiter:virtual public Singer, virtual public Waiter{
 
 };
+
+
+/*class SingerWaiter: public Singer, public Waiter{
+
+
+};*/
 
 #endif //CPLUSPLUSBASIC_WORKER_H

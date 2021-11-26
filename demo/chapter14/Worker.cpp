@@ -39,6 +39,14 @@ void Waiter::Show() const {
     cout << "Panache rating: " << panache << endl;
 }
 
+/*Singer::~Singer() {
+
+}
+
+Waiter::~Waiter() {
+
+}*/
+
 //Singer methods
 
 char* Singer::pv[] = {"other","alto","contralto","soprano",
