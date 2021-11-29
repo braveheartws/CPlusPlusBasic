@@ -683,3 +683,133 @@ Star(const Spectral&,int members = 1);
 
 **explicit关键字: 可以用一个参数调用的构造函数将用作参数类型到类类型的隐式转换函数, 通过explicit关键字关闭隐式转换-----防止单参数构造函数的隐式转换**
 
+### 14.4 类模板
+
+模板类声明方式:
+
+```c
+
+template<class Type>	//class不代表Type必须是一个类, 只表明Type是一个通用的类型说明符
+
+template<typename Type>
+```
+
+***较新的C++实现允许在这种情况下使用不太容易混淆的关键字typename替代class**
+
+#### 14.4.6 模板的具体化
+
+1.隐式实例化
+
+```c
+ArrayTP<double, 30> *pt;
+pt = new ArrayTP<double, 30>;
+```
+
+2.显示实例化
+
+```c
+template class ArrayTP<double, 30> *pt;
+```
+
+3.显示具体化
+
+4.部分具体化
+
+---
+
+```c
+template<typename Type, int n>
+class ArrayTP {
+private:
+    Type ar[n];
+public:
+    virtual Type &operator[](int);
+    virtual Type operator[](int) const;
+};
+
+//use
+ArrayTP<ArrayTP<int, 8>, 5> aatp;
+aatp[i][j] = (i + 1) * (j + 1);
+```
+
+#### 14.4.7 成员模板
+
+```c
+//beta.h
+#ifndef CPLUSPLUSDEMO_BETA_H
+#define CPLUSPLUSDEMO_BETA_H
+#include <iostream>
+using std::cout;
+using std::endl;
+template<typename T>
+class beta {
+private:
+    template<class V>
+    class hold {
+    private:
+        V val;
+    public:
+        hold(V v = 0) : val(v) {}
+        void show() const { cout << val << endl; }
+        V Value() const { return val; }
+    };
+    hold<T> q;
+    hold<int> n;
+public:
+    beta(T t, int i) : q(t), n(i) {}
+    template<class U>
+    U blab(U u, T t) { return (n.Value() + q.Value()) * u / t; }
+    void Show() const { q.show(), n.show(); }
+};
+#endif //CPLUSPLUSDEMO_BETA_H
+
+//betav2.h
+#ifndef CPLUSPLUSDEMO_BETAV2_H
+#define CPLUSPLUSDEMO_BETAV2_H
+
+template<typename T>
+class betav2 {
+private:
+    template<class V>
+    class hold;
+};
+
+template<typename T>
+template<typename V>
+class betav2<T>::hold<V> {
+};
+#endif //CPLUSPLUSDEMO_BETAV2_H
+```
+
+#### 14.4.8 将模板用作参数
+
+```c
+template<template<typename T> class Thing>
+class Crab {
+}
+```
+
+#### 14.4.9 模板类和友元
+
+模板友元分3类:
+
+* 非模板友元
+* 约束(bound)模板友元, 友元的类型取决于类被实例化的类型
+* 非约束(unbound)模板友元, 友元的所有具体化都是类的每一个具体化的友元
+
+1.模板类的非模板友元函数
+
+```c
+template<class T>
+class HasFriend{
+public:
+	friend void counts();	//所有实例化的友元
+}
+```
+
+
+
+
+
+
+
