@@ -847,3 +847,120 @@ void report(T& it) {
 
 **friend void report<>(HasFriendT<TT> &);	//这个函数在编译器看来是没有实现的，但是必不可少 删除后将导致编译不过，因为it.item不一定成立**
 
+---
+
+## 第十五章 友元,异常和其他
+
+### 15.1友元
+
+
+
+![](./29.png)
+
+**可见性问题**
+
+Tv 声明Remote类为友元类, Remote里面包含Tv的引用,解除循环引用
+
+```c
+//正确方式
+class Tv;
+class Remote{...}
+class Tv{...}
+//错误方式 
+class Remote;
+class Tv {
+	friend void Remote::set_chan(Tv&tv,int c);	//编译器在Tv类中看到了Remote的一个方法被声明为Tv类的友元之前, 应该先看到Remote类的声明和set_chan()方法声明
+}
+class Remote {...}
+```
+
+### 15.3 异常
+
+#### 15.3.1 调用abort()
+
+#### 15.3.2 返回错误码
+
+#### 15.3.3 异常机制
+
+异常组成:
+
+- 引发异常
+- 使用处理程序捕获异常
+- 使用try块
+
+```c
+throw "error msg";	//抛出异常
+
+try{
+    ...
+} catch (const char *msg) {
+    cout << msg << endl;	//输出消息
+}
+```
+
+#### 15.3.4 将对象作用于异常类型
+
+```c
+throw bean(msg);
+try{
+    ...
+} catch (bean & msg) {
+    cout << msg << endl;	//输出消息
+}
+```
+
+### 15.4 RTTI
+
+> RTTI (Runtime Type Identification)  运行阶段类型识别
+
+**RTTI只适用于包含虚函数的类**
+
+1.dynamic_cast运算符
+
+```c
+class Grand{ //has virtual methods 
+};
+class Superb: public Grand{...};
+class Maginficent :public Superb{...};
+Grand *pg = new Grand;
+Grand *ps = new Superb;
+Grand *pm = new Magnificent;
+Magnificent *p1 = (Magnificent*) pm;	//#1	安全
+Magnificent *p2 = (Magnificent*) pg;	//#2	不安全
+Magnificent *p3 = (Magnificent*) pm;	//#3	安全
+```
+
+2.typeid运算符和type_info
+
+确定两个对象是否为同种类型.  接收参数类型:
+
+* 类名
+* 结果为对象的表达式
+
+typeid运算符返回一个堆type_info对象的引用,
+
+### 15.5 类型转换运算符
+
+* dynamic_cast
+* const_cast   
+* static_cast
+* reinterpret_cast
+
+1.const_cast  改变值为const volatile 语法  大多数情况下是常量, 有时又是需要可以修改的,这时候将其声明为const, 在需要修改的时候, 使用const_cast
+
+```c
+const_cast<type-name>(exp);
+
+High bar;
+const High *pbar = &bar;
+High *pb = const_cast<High *>(pbar);	//valid
+
+High *pb = (High *)(pbar);	//valid
+Low *p1 = (Low *)(pbar);	//valid
+```
+
+2.dynamic_cast 将使用一个指向基类的指针来生成一个指向派生类的指针,(是否可以安全地将对象的地址赋值给特定类型的指针)
+
+![sw](./30.png)
+
+![](./31.png)
