@@ -16,4 +16,4 @@ add_executable(CPlusPlusBasic demo/chapter9/main.cpp main.cpp macro/macro_study.
         demo/chapter14/Student.cpp demo/chapter14/Student.h demo/chapter14/StudentNew.cpp demo/chapter14/StudentNew.h
         demo/chapter14/Human.cpp demo/chapter14/Human.h demo/chapter14/PublicHuman.cpp demo/chapter14/PublicHuman.h
         demo/chapter14/ProtectedHuman.cpp demo/chapter14/ProtectedHuman.h demo/chapter14/PrivateHuman.cpp
-        demo/chapter14/PrivateHuman.h   demo/chapter14/Worker.h demo/chapter14/Worker.cpp demo/chapter14/xx/Stack.cpp demo/chapter14/xx/Stack.h demo/chapter14/xx/main.cpp)
+        demo/chapter14/PrivateHuman.h   demo/chapter14/Worker.h demo/chapter14/Worker.cpp demo/chapter14/xx/Stack.cpp demo/chapter14/xx/Stack.h demo/chapter14/xx/main.cpp demo/chapter14/xx/HasFriendT.h)
