@@ -47,4 +47,8 @@ template<typename C,typename D> void show2(C &c,D&d){
     cout << d.item<<endl;
 }
 
+template <> class IC<int> {
+
+};
+
 #endif //CPLUSPLUSBASIC_HASFRIENDT_H

@@ -4,17 +4,17 @@
 
 #include "Stack.h"
 
-template<class Type>
+template<typename Type>
 bool Stack<Type>::isEmpty() {
     return top == 0;
 }
 
-template<class Type>
+template<typename Type>
 bool Stack<Type>::isFull() {
     return top == MAX;
 }
 
-template<class Type>
+template<typename Type>
 bool Stack<Type>::push(const Type &item) {
     if (top < MAX) {
         items[top++] = item;
@@ -23,7 +23,7 @@ bool Stack<Type>::push(const Type &item) {
         return false;
 }
 
-template<class Type>
+template<typename Type>
 bool Stack<Type>::pop( Type &item) {
     if (top > 0) {
         item = items[--top];
@@ -32,12 +32,12 @@ bool Stack<Type>::pop( Type &item) {
         return false;
 }
 
-template<class Type>
+template<typename Type>
 Stack<Type>::Stack() {
     top = 0;
 }
 
-template<class Type>
+template<typename Type>
 std::ostream & operator<<(std::ostream &os, const Stack<Type> & obj) {
     if (obj.isEmpty()) {
         return os;
@@ -51,5 +51,5 @@ std::ostream & operator<<(std::ostream &os, const Stack<Type> & obj) {
 
     return os;
 }
-template<class Type>
+template<typename Type>
 Stack<Type>::~Stack() = default;

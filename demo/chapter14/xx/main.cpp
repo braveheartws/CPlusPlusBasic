@@ -4,8 +4,9 @@
 
 using namespace std;
 #include "HasFriendT.h"
+#include "Stack.h"
 
-int main() {
+int mainxx14() {
     counts<int>();
     HasFriendT<int> hfi1(10);
     HasFriendT<int> hfi2(20);
@@ -20,5 +21,8 @@ int main() {
     counts<double>();
 
     show2(hfi1,hfdb);
+
+    class HasFriendT<int> sit(2);
+    class HasFriendT<int> vv(2);
     return 0;
 }
