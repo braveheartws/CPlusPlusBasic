@@ -25,7 +25,7 @@ class BB {
 
 };
 
-int main() {
+int mainxx() {
     using namespace std;
     Tv s42;
     cout <<" init settings" << endl;
