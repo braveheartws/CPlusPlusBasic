@@ -18,4 +18,4 @@ add_executable(CPlusPlusBasic demo/chapter9/main.cpp main.cpp macro/macro_study.
         demo/chapter14/ProtectedHuman.cpp demo/chapter14/ProtectedHuman.h demo/chapter14/PrivateHuman.cpp
         demo/chapter14/PrivateHuman.h   demo/chapter14/Worker.h demo/chapter14/Worker.cpp demo/chapter14/xx/Stack.cpp
         demo/chapter14/xx/Stack.h demo/chapter14/xx/main.cpp demo/chapter14/xx/HasFriendT.h demo/chapter15/main.cpp
-        demo/chapter15/tv.cpp demo/chapter15/tv.h demo/chapter15/remote.cpp demo/chapter15/remote.h testcmd.cpp util.h util.c)
+        demo/chapter15/tv.cpp demo/chapter15/tv.h demo/chapter15/remote.cpp demo/chapter15/remote.h testcmd.cpp util.h util.c func_pointer.cpp)
